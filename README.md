@@ -1,4 +1,5 @@
 # safe_extensions
+![version](https://img.shields.io/badge/version-1.0.1-blue.svg)  ![version](https://img.shields.io/badge/NullSefety-True-brightgreen)
 
 A Flutter package that simplifies working with nullable types by offering default values and replacements when `null` is encountered. With `safe_extensions`, you can safely access nullable values and avoid repetitive `null` checks.
 
@@ -10,10 +11,10 @@ A Flutter package that simplifies working with nullable types by offering defaul
 
 ## Platform Availability
 
-| API        | Android | iOS | Linux | macOS | Windows | Web |
-|------------|---------|-----|-------|-------|---------|-----|
-| safeValue  | ✅      | ✅  | ✅    | ✅    | ✅      | ✅  |
-| safe()     | ✅      | ✅  | ✅    | ✅    | ✅      | ✅  |
+| API       | Android | iOS | Linux | macOS | Windows | Web |
+|-----------|---------|-----|-------|-------|---------|-----|
+| safeValue | ✅       | ✅   | ✅     | ✅     | ✅       | ✅   |
+| safe()    | ✅       | ✅   | ✅     | ✅     | ✅       | ✅   |
 
 ## Documentation
 

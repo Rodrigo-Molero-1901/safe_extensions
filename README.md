@@ -1,10 +1,10 @@
-# Safe Extensions
+# safe_extensions
 
 A Flutter package that simplifies working with nullable types by offering default values and replacements when `null` is encountered. With `safe_extensions`, you can safely access nullable values and avoid repetitive `null` checks.
 
 ## Currently Supported Features
 
-- Handle nullable types such as `bool`, `int`, `double`, `String`, `DateTime`, `DateTimeRange`, `Iterable`, `Map`, `Set`, and `Object`.
+- Handle nullable types such as `bool`, `int`, `double`, `String`, `DateTime`, `Iterable`, `Map`, and `Set`.
 - Use `safeValue` getter for defaults and `safe()` method to specify replacements.
 - No platform-specific setup required; works across all Flutter-supported platforms.
 
@@ -19,110 +19,93 @@ A Flutter package that simplifies working with nullable types by offering defaul
 
 For full details, check the [API reference on pub.dev](https://pub.dev/documentation/safe_extensions/latest/).
 
+## Default Values by Type
+
+Here's a summary of the default values provided by `safeValue` for each nullable type:
+
+| Type          | Default Value         |
+|---------------|-----------------------|
+| `bool`        | `false`               |
+| `int`         | `0`                   |
+| `double`      | `0.0`                 |
+| `String`      | `""` (empty string)   |
+| `DateTime`    | `DateTime(1970, 1, 1)`|
+| `Iterable`    | `[]` (empty iterable) |
+| `Map`         | `{}` (empty map)      |
+| `Set`         | `{}` (empty set)      |
+
 ## Usage
 
-### Single Example
-
-Here’s a quick example to demonstrate `safeValue` and `safe()` with nullable types:
+### Safe Bool
+Using `safeValue` and `safe()` for `bool`:
 
 ```dart
 bool? nullableBool;
-int? nullableInt;
-
-Text('Safe Bool: ${nullableBool.safeValue}'), // Outputs `false` if nullableBool is null
-Text('Safe Int with Replacement: ${nullableInt.safe(42)}'), // Outputs `42` if nullableInt is null
+bool resultSafeValue = nullableBool.safeValue; // Returns false if nullableBool is null
+bool resultSafeMethod = nullableBool.safe(true); // Returns true if nullableBool is null
 ```
 
-### Detailed Usage
+### Safe Int
+Using `safeValue` and `safe()` for `int`:
 
-#### Safe Bool
-```dart
-bool? nullableBool;
-bool result = nullableBool.safeValue; // returns false if nullableBool is null
-```
-
-#### Safe Int
 ```dart
 int? nullableInt;
-int result = nullableInt.safe(100); // returns 100 if nullableInt is null
+int resultSafeValue = nullableInt.safeValue; // Returns 0 if nullableInt is null
+int resultSafeMethod = nullableInt.safe(100); // Returns 100 if nullableInt is null
 ```
 
-#### Safe Double
+### Safe Double
+Using `safeValue` and `safe()` for `double`:
+
 ```dart
 double? nullableDouble;
-double result = nullableDouble.safe(0.0); // returns 0.0 if nullableDouble is null
+double resultSafeValue = nullableDouble.safeValue; // Returns 0.0 if nullableDouble is null
+double resultSafeMethod = nullableDouble.safe(5.5); // Returns 5.5 if nullableDouble is null
 ```
 
-#### Safe String
+### Safe String
+Using `safeValue` and `safe()` for `String`:
+
 ```dart
 String? nullableString;
-String result = nullableString.safe("default"); // returns "default" if nullableString is null
+String resultSafeValue = nullableString.safeValue; // Returns an empty string if nullableString is null
+String resultSafeMethod = nullableString.safe("default"); // Returns "default" if nullableString is null
 ```
 
-#### Safe DateTime
+### Safe DateTime
+Using `safeValue` and `safe()` for `DateTime`:
+
 ```dart
 DateTime? nullableDateTime;
-DateTime result = nullableDateTime.safe(DateTime.now()); // returns current date if nullableDateTime is null
+DateTime resultSafeValue = nullableDateTime.safeValue; // Returns DateTime(1970, 1, 1) if nullableDateTime is null
+DateTime resultSafeMethod = nullableDateTime.safe(DateTime.now()); // Returns current date if nullableDateTime is null
 ```
 
-#### Safe DateTimeRange
-```dart
-DateTimeRange? nullableRange;
-DateTimeRange result = nullableRange.safe(DateTimeRange(start: DateTime.now(), end: DateTime.now().add(Duration(days: 1)))); // default range if null
-```
+### Safe Iterable
+Using `safeValue` and `safe()` for `Iterable`:
 
-#### Safe Iterable
 ```dart
 Iterable<int>? nullableList;
-Iterable<int> result = nullableList.safe([]); // returns an empty list if nullableList is null
+Iterable<int> resultSafeValue = nullableList.safeValue; // Returns empty list if nullableList is null
+Iterable<int> resultSafeMethod = nullableList.safe([1, 2, 3]); // Returns [1, 2, 3] if nullableList is null
 ```
 
-#### Safe Map
+### Safe Map
+Using `safeValue` and `safe()` for `Map`:
+
 ```dart
 Map<String, int>? nullableMap;
-Map<String, int> result = nullableMap.safe({}); // returns an empty map if nullableMap is null
+Map<String, int> resultSafeValue = nullableMap.safeValue; // Returns empty map if nullableMap is null
+Map<String, int> resultSafeMethod = nullableMap.safe({"key": 1}); // Returns {"key": 1} if nullableMap is null
 ```
 
-#### Safe Set
+### Safe Set
+Using `safeValue` and `safe()` for `Set`:
+
 ```dart
 Set<int>? nullableSet;
-Set<int> result = nullableSet.safe({}); // returns an empty set if nullableSet is null
-```
-
-#### Safe Object
-```dart
-Object? nullableObject;
-Object result = nullableObject.safe(Object()); // returns a new object if nullableObject is null
-```
-
-### Complete Example
-
-In `main.dart`, you can demonstrate all the `safeValue` and `safe()` methods as follows:
-
-```dart
-void main() {
-  bool? nullableBool;
-  int? nullableInt;
-  double? nullableDouble;
-  String? nullableString;
-  DateTime? nullableDateTime;
-  DateTimeRange? nullableRange;
-  Iterable<int>? nullableList;
-  Map<String, int>? nullableMap;
-  Set<int>? nullableSet;
-  Object? nullableObject;
-
-  print(nullableBool.safeValue); // Output: false
-  print(nullableInt.safe(42)); // Output: 42
-  print(nullableDouble.safe(0.0)); // Output: 0.0
-  print(nullableString.safe("default")); // Output: "default"
-  print(nullableDateTime.safe(DateTime.now())); // Output: Current DateTime
-  print(nullableRange.safe(DateTimeRange(start: DateTime.now(), end: DateTime.now().add(Duration(days: 1))))); // Default range
-  print(nullableList.safe([])); // Output: empty list
-  print(nullableMap.safe({})); // Output: empty map
-  print(nullableSet.safe({})); // Output: empty set
-  print(nullableObject.safe(Object())); // Output: new Object
-}
+Set<int> resultSafeValue = nullableSet.safeValue; // Returns empty set if nullableSet is null
+Set<int> resultSafeMethod = nullableSet.safe({5, 10}); // Returns {5, 10} if nullableSet is null
 ```
 
 ## Getting Started
@@ -131,7 +114,7 @@ To start using `safe_extensions`, add it as a dependency in your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  safe_extensions: ^1.0.0
+  safe_extensions: ^1.0.1
 ```
 
 Then, import it into your Dart file:

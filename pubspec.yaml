@@ -2,7 +2,7 @@ name: safe_extensions
 description: "A Dart and Flutter package providing safer extensions to enhance native types, ensuring type safety and improving code readability."
 repository: https://github.com/Rodrigo-Molero-1901/safe_extensions
 homepage: https://github.com/Rodrigo-Molero-1901/safe_extensions
-version: 1.0.0
+version: 1.0.1
 
 environment:
   sdk: ">=2.18.0 <4.0.0"

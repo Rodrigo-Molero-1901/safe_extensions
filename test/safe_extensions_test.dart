@@ -46,6 +46,12 @@ void main() {
       expect(nullableIterable.safe([1, 2]), [1, 2]);
     });
 
+    test('List safe extension', () {
+      List<String>? nullableList;
+      expect(nullableList.safeValue, []);
+      expect(nullableList.safe(['1', '2']), ['1', '2']);
+    });
+
     test('DateTime safe extension', () {
       DateTime? nullableDateTime;
       final defaultDateTime = DateTime(1970, 1, 1);

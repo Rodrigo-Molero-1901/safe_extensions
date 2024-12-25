@@ -24,16 +24,17 @@ For full details, check the [API reference on pub.dev](https://pub.dev/documenta
 
 Here's a summary of the default values provided by `safeValue` for each nullable type:
 
-| Type          | Default Value         |
-|---------------|-----------------------|
-| `bool`        | `false`               |
-| `int`         | `0`                   |
-| `double`      | `0.0`                 |
-| `String`      | `""` (empty string)   |
-| `DateTime`    | `DateTime(1970, 1, 1)`|
-| `Iterable`    | `[]` (empty iterable) |
-| `Map`         | `{}` (empty map)      |
-| `Set`         | `{}` (empty set)      |
+| Type       | Default Value          |
+|------------|------------------------|
+| `bool`     | `false`                |
+| `int`      | `0`                    |
+| `double`   | `0.0`                  |
+| `String`   | `""` (empty string)    |
+| `DateTime` | `DateTime(1970, 1, 1)` |
+| `List`     | `[]` (empty list)      |
+| `Iterable` | `[]` (empty iterable)  |
+| `Map`      | `{}` (empty map)       |
+| `Set`      | `{}` (empty set)       |
 
 ## Usage
 
@@ -82,13 +83,22 @@ DateTime resultSafeValue = nullableDateTime.safeValue; // Returns DateTime(1970,
 DateTime resultSafeMethod = nullableDateTime.safe(DateTime.now()); // Returns current date if nullableDateTime is null
 ```
 
+### Safe List
+Using `safeValue` and `safe()` for `List`:
+
+```dart
+List<String>? nullableList;
+List<String> resultSafeValue = nullableList.safeValue; // Returns empty list if nullableList is null
+List<String> resultSafeMethod = nullableList.safe(['1', '2', '3']); // Returns ['1', '2', '3'] if nullableList is null
+```
+
 ### Safe Iterable
 Using `safeValue` and `safe()` for `Iterable`:
 
 ```dart
-Iterable<int>? nullableList;
-Iterable<int> resultSafeValue = nullableList.safeValue; // Returns empty list if nullableList is null
-Iterable<int> resultSafeMethod = nullableList.safe([1, 2, 3]); // Returns [1, 2, 3] if nullableList is null
+Iterable<int>? nullableIterable;
+Iterable<int> resultSafeValue = nullableIterable.safeValue; // Returns empty iterable if nullableList is null
+Iterable<int> resultSafeMethod = nullableIterable.safe([1, 2, 3]); // Returns [1, 2, 3] if nullableList is null
 ```
 
 ### Safe Map
@@ -115,7 +125,7 @@ To start using `safe_extensions`, add it as a dependency in your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  safe_extensions: ^1.0.1
+  safe_extensions: ^1.1.0
 ```
 
 Then, import it into your Dart file:
